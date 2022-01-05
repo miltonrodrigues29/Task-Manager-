@@ -10,6 +10,7 @@ require("dotenv").config();
 //middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(express.static("./public"));
 //routes
 app.get("/hello", (req, res) => {
   res.send(`Task Manager App`);
@@ -18,7 +19,7 @@ app.get("/hello", (req, res) => {
 app.use("/api/v1/tasks", tasks);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 const start = async () => {
   try {
